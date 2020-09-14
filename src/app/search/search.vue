@@ -37,6 +37,7 @@
     import productBlock from "./searchProductBlock"
     import shopFooter from '../../common/components/shopFooter/shopFooter'
     import footer from '../../common/components/footer/footer'
+    import {getSearchList} from '@/common/network/api.js'
     export default {
         components: {
             "ProductBlock": productBlock,
@@ -45,35 +46,52 @@
         },
         data(){
             return {
+                word:"" ,
                 searchList: [
-                    {
-                        img:"",
-                        name: "GeekPro 2020 英特尔酷睿i5 分体式台式机",
-                        des: "十代英特尔酷睿i5-10400F/i5-10400/Windows 10 家庭中文版 /8G/1T+256G SSD/GTX1650_4GB/黑色",
-                        price: 4599
-                    },
-                    {
-                        img:"",
-                        name: "GeekPro 2020 英特尔酷睿i5 分体式台式机",
-                        des: "十代英特尔酷睿i5-10400F/i5-10400/Windows 10 家庭中文版 /8G/1T+256G SSD/GTX1650_4GB/黑色",
-                        price: 4599
-                    },
-                    {
-                        img:"",
-                        name: "GeekPro 2020 英特尔酷睿i5 分体式台式机",
-                        des: "十代英特尔酷睿i5-10400F/i5-10400/Windows 10 家庭中文版 /8G/1T+256G SSD/GTX1650_4GB/黑色",
-                        price: 4599
-                    },
-                    {
-                        img:"",
-                        name: "GeekPro 2020 英特尔酷睿i5 分体式台式机",
-                        des: "十代英特尔酷睿i5-10400F/i5-10400/Windows 10 家庭中文版 /8G/1T+256G SSD/GTX1650_4GB/黑色",
-                        price: 4599
-                    }
+
 
 
                 ]
             }
+        },
+        methods: {
+            getSearchList(_this, params){
+                getSearchList(params).then(result => {
+                    if(result.status === 200){
+                        let data = result.data.data;
+                        let arr = [];
+                        console.log(data)
+                        for(let i = 0; i < data.length; i++){
+
+                            let listdata = {
+                                id: data[i]["id"],
+                                img: data[i]["img_url"],
+                                thumb_url: data[i]["thumb_url"],
+                                name: data[i]["name"],
+                                des: data[i]["introduce"],
+                                price: data[i]["price"]
+
+                            }
+                            arr.push(listdata)
+                        }
+                        _this.searchList = arr;
+
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        },
+        created(){
+            console.log(this.$route.params)
+            this.word = this.$route.params.word;
+            // this.word = "拯救者"
+            console.log("666"+ this.word)
+        },
+        mounted(){
+            this.$options.methods.getSearchList(this,{
+                word: this.word
+            })
         }
     }
 

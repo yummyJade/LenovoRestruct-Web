@@ -56,7 +56,7 @@
         .top{
             width: 1200px;
             margin: 0 auto;
-            padding: 70px 0 70px 76px;
+            padding: 70px 0 70px 0px;
             background-color: $backFooter;
         }
         .bottom{

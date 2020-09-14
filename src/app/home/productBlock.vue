@@ -1,10 +1,17 @@
 <template>
-    <div class="display_block">
+
+    <a class="display_block">
         <div class="pic">
-            <a href="">
+            <router-link :to="'/product/' + this.item.id">
 <!--                <img :src="this.item.img" alt="">-->
-                <img src="./assets/item1.jpg" alt="">
-            </a>
+                <img v-lazy="this.item.img" :key="this.item.img" alt="">
+            </router-link>
+<!--            <router-link :to="'/search/' + this.item.title">-->
+<!--            <a :href="'/search/' + this.item.title">-->
+
+<!--                <img :src="this.item.img" alt="">-->
+
+<!--            </a>-->
         </div>
         <div class="des">
             <a class="title">{{this.item.title}}</a>
@@ -15,13 +22,16 @@
 
             </a>
         </div>
-    </div>
+    </a>
 </template>
+
 
 <style lang="scss" scoped>
     .display_block{
+        display: block;
         width: 230px;
         height: 265px;
+        margin-right: 9px;
         margin-bottom: 12px;
         background-color: $bright;
         img{

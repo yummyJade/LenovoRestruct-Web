@@ -1,7 +1,10 @@
 <template>
     <div class="search_product">
         <a class="img_a" href="">
-            <img src="./assets/pic1.jpg" alt="">
+<!--            <img :src="this.item.img" alt="">-->
+            <router-link :to="'/product/' + this.item.id">
+                <img v-lazy="this.item.img" :key="this.item.img" alt="">
+            </router-link>
         </a>
         <div style="height: 50px;"></div>
         <div class="name">

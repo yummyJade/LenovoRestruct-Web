@@ -1,4 +1,5 @@
 module.exports = {
+
     css: {
         loaderOptions: {
             scss: {
@@ -6,5 +7,6 @@ module.exports = {
             }
 
         }
-    }
+    },
+
 }

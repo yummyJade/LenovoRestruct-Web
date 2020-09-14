@@ -1,7 +1,7 @@
 <template>
     <a href="">
         <div class="quick_access_block">
-            <img src="./assets/member_benefit.png" alt="">
+            <img :src="this.item.imgUrl" alt="">
             <span>{{this.item.name}}</span>
         </div>
     </a>

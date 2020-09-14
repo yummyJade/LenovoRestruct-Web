@@ -11,6 +11,7 @@
 <script>
     import nav from '../common/components/nav/nav'
 
+
     export default {
         name: "App",
         components: {

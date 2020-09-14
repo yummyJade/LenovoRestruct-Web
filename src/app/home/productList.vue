@@ -8,7 +8,7 @@
         <div class="bottom">
             <div class="content">
                 <div class="left">
-                    <img src="./assets/computer_left.jpg" alt="">
+                    <img :src="this.item.left" alt="">
                 </div>
                 <div class="right">
                     <div class="product_list_main">
@@ -68,7 +68,7 @@
     }
     ul{
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         flex-wrap: wrap;
 
     }

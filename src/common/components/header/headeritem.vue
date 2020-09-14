@@ -9,15 +9,21 @@
 
 <style lang="scss" scoped>
     ul{
-        height: 50px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        /*height: 70px;*/
+        /*display: flex;*/
+        /*justify-content: flex-start;*/
+        /*align-items: center;*/
+
         li{
-            width: 60px;
+            /*width: 60px;*/
+            float: left;
+            margin-right: 45px;
         }
         a{
-            color: $fontGrey;
+
+            font-size: 17px;
+            color: $fontGrey2;
+            font-weight: 600;
         }
 
     }
