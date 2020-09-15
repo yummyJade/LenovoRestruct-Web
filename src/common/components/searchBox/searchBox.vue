@@ -4,7 +4,7 @@
         <a tag="searchButton" class="search_icon" @click="gotoSearch" >
             <span></span>
         </a>
-        <input type="text" latag="latag_pc_search_keyword" placeholder="潮酷青春 LI想依燃" v-model="searchVal"  placeholder-url="https://activity.lenovo.com.cn/sales/sep.html" @keyup.enter="gotoSearch">
+        <input type="text" latag="latag_pc_search_keyword"  placeholder="潮酷青春 LI想依燃" v-model="searchVal"  placeholder-url="https://activity.lenovo.com.cn/sales/sep.html" @keyup.enter="gotoSearch">
     </div>
 </template>
 
@@ -64,6 +64,7 @@
 </style>
 <script>
     export default {
+        props: ["val"],
         data(){
             return{
                 searchVal: ""
@@ -75,9 +76,16 @@
                 // console.log(word)
                 //点击按钮开始搜索，并跳转到search页
                 if (word !== ""){
-                    this.$router.push({ path:`/search/${word}` })
+                    // this.$router.go(0);
+                    this.$router.push({ path:`/search/` , query: {word: word} })
                 }
 
+            }
+        },
+
+        mounted(){
+            if(this.val !== ""){
+                this.searchVal = this.val;
             }
         }
     }

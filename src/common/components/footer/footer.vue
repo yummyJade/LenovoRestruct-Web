@@ -47,7 +47,7 @@
         </div>
 
         <div class="bottom">
-            软工龙舟队
+            @软工龙舟队
         </div>
     </div>
 </template>

@@ -13,6 +13,10 @@ const product =()=>import("@/app/product/product");
 const search =()=>import("@/app/search/search");
 
 // 要告诉 vue 使用 vueRouter
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 Vue.use(VueRouter);
 
 const routes = [
@@ -29,7 +33,7 @@ const routes = [
         component: product
     },
     {
-        path: "/search/:word",
+        path: "/search",
         name: search,
         component: search
     },

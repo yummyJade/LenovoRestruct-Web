@@ -1,6 +1,5 @@
 // import axios from '@/common/network/axios';
 import axios from "axios";
-// import router from '../router';
 
 
 // 创建axios实例
@@ -43,18 +42,6 @@ export function get(url, params = {}) {
     })
 }
 
-// export function get(url, params ={}) {
-//     return new Promise((resolve, reject) =>{
-//         console.log("here")
-//         axios.get(url, {
-//             params
-//         }).then((res) => {
-//             resolve(res.data)
-//         }).catch(err => {
-//             reject(err)
-//         })
-//     })
-// }
 
 //封装post请求
 export function post(url, data = {}) {

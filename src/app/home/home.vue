@@ -1,7 +1,7 @@
 <template>
     <div class="container">
 <!--        todo:导航栏做一下处理-->
-        <Header></Header>
+        <Header :val="this.searchVal"></Header>
         <Banner></Banner>
         <div class="quick_access_wrap">
             <div class="content">
@@ -56,11 +56,7 @@
         padding-bottom: 20px;
     }
 
-    .product-detail-card:hover{
-        box-shadow:0 5px 15px rgba(0,0,0,0.2);
-        -webkit-transition:-webkit-box-shadow .3s linear;
-        transition:box-shadow .3s linear;
-    }
+
 
 
 </style>
@@ -87,6 +83,7 @@
         },
         data () {
             return {
+                searchVal: "",
                 msg: "我是aaa 组件",
                 quickAccessList: [
                     {

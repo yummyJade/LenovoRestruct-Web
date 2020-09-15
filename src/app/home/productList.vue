@@ -72,6 +72,11 @@
         flex-wrap: wrap;
 
     }
+    .product_list_main .display_block:hover{
+        box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        -webkit-transition:-webkit-box-shadow .3s linear;
+        transition:box-shadow .3s linear;
+    }
 </style>
 <script>
     import productBlock from './productBlock'

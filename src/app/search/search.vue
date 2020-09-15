@@ -1,5 +1,7 @@
 <template>
+
     <div class="container">
+        <Header :val="this.word"></Header>
         <div class="product_list">
             <ul >
                 <li v-for="(item, index) in searchList" :key="index">
@@ -18,6 +20,7 @@
         background-color: $lightgrey;
     }
     .product_list{
+        padding-top: 20px;
         ul{
             width: 1200px;
             height: auto;
@@ -28,6 +31,7 @@
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
+
         }
     }
 
@@ -38,14 +42,18 @@
     import shopFooter from '../../common/components/shopFooter/shopFooter'
     import footer from '../../common/components/footer/footer'
     import {getSearchList} from '@/common/network/api.js'
+    import header from "@/common/components/header/header"
     export default {
+
         components: {
             "ProductBlock": productBlock,
             "ShopFooter": shopFooter,
-            "Footer": footer
+            "Footer": footer,
+            'Header': header
         },
         data(){
             return {
+                searchVal: "",
                 word:"" ,
                 searchList: [
 
@@ -56,11 +64,12 @@
         },
         methods: {
             getSearchList(_this, params){
+
                 getSearchList(params).then(result => {
                     if(result.status === 200){
                         let data = result.data.data;
                         let arr = [];
-                        console.log(data)
+                        // console.log(data)
                         for(let i = 0; i < data.length; i++){
 
                             let listdata = {
@@ -76,6 +85,8 @@
                         }
                         _this.searchList = arr;
 
+
+
                     }
                 }).catch(err => {
                     console.log(err)
@@ -83,15 +94,21 @@
             }
         },
         created(){
-            console.log(this.$route.params)
-            this.word = this.$route.params.word;
+            // console.log(this.$route.params)
+                this.word = this.$route.query.word;
+                console.log(this.word)
+            // this.word = this.$route.params.word;
+            // this.searchList = [];
+            // this.r
             // this.word = "拯救者"
-            console.log("666"+ this.word)
+            // console.log("666"+ this.word)
         },
         mounted(){
+
             this.$options.methods.getSearchList(this,{
                 word: this.word
             })
+
         }
     }
 

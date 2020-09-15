@@ -4,7 +4,7 @@
         <div class="navBar">
             <div class="content">
                 <NavItem :list="list"></NavItem>
-                <SearchBox></SearchBox>
+                <SearchBox :val="this.val"></SearchBox>
             </div>
         </div>
     </nav>
@@ -40,7 +40,9 @@
     import searchBox from "../searchBox/searchBox"
 
     export default {
+        props: ["val"],
         data(){
+
             return {
                 list:[
                     {

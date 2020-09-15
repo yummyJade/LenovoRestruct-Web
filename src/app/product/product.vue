@@ -47,6 +47,7 @@
 
                     <div class="title">{{this.info.option.option_name}}</div>
                     <div class="detail">
+<!--                        :class="{'option_select':optionSelect === index}"-->
                         <div  class="list" v-for="(item, index) in info.option.option_list" :key="index" :class="{'option_select':optionSelect === index}" @click="optionChange(index)">
                             <OptionBlock :item="item"></OptionBlock>
                         </div>
@@ -60,10 +61,12 @@
 
                     <div class="title">购买数量</div>
                     <div class="buy_count_wrap">
-                        <div class="reduce" @click="numReduce"></div>
+                        <div class="reduce" @click="numReduce">
+                            <div class="inner"></div>
+                        </div>
                         <input class="num" type="text" :value="numVal">
                         <div class="add" @click="numAdd">
-
+                            <div class="inner"></div>
                         </div>
                     </div>
 
@@ -210,7 +213,10 @@
                 }
             }
             .option_select{
-                color: $fontPriceProduct;
+                a{
+                    color: $fontPriceProduct;
+                }
+
                 border: 1px solid $fontPriceProduct !important;
             }
             .price_wrap{
@@ -231,14 +237,50 @@
                 .reduce{
                     width: 20px;
                     height: 24px;
-                    background-color: #e2231a;
+                    /*background-color: #e2231a;*/
                     cursor: pointer;
+                    position: relative;
+                    border-right: 1px solid $borderProduct;
+                    .inner{
+                        height: 1px;
+                        width: 10px;
+                        background: $fontOption;
+                        position: absolute;
+                        top:10px;
+                        bottom:0;
+                        left: 5px;
+
+                    }
                 }
                 .add{
                     width: 20px;
                     height: 24px;
-                    background-color: #e2231a;
+                    /*background-color: #e2231a;*/
                     cursor: pointer;
+                    position: relative;
+                    border-left: 1px solid $borderProduct;
+
+                    .inner{
+                        height: 1px;
+                        width: 10px;
+                        background: $fontOption;
+                        position: absolute;
+                        top:10px;
+                        bottom:0;
+                        right: 5px;
+
+                    }
+                    .inner::after {
+                        content: '';
+                        height: 10px;
+                        width: 1px;
+                        display: block;
+                        background: black;
+                        position: absolute;
+                        top:-5px;
+                        left: 5px
+                    }
+
                 }
                 input{
                     width: 50px;
@@ -380,6 +422,15 @@
                         if(infoData.small_image.length > 5){
                             infoData.small_image = infoData.small_image.slice(0,5)
                         }
+                        for(let i = 0; i < infoData.option.option_list.length; i++){
+                            if(_this.id === infoData.option.option_list[i].id){
+                                // console.log(infoData.option.option_list[i].id)
+                                _this.optionSelect = i;
+                                break;
+                            }
+                        }
+
+
                         _this.info = infoData
                         // console.log(infoData)
 
